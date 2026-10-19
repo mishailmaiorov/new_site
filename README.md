@@ -29,7 +29,7 @@
 
 Примерная структура проекта
 ```
-my-web-site/
+my-web_site/
 │
 ├── index.html
 ├── about.html
@@ -40,14 +40,6 @@ my-web-site/
 │
 ├── js/
 │   └── script.js
-│
-├── img/
-│   ├── logo.png
-│   ├── favicon.ico
-│   └── screenshots/
-│
-├── pages/
-│   └── (дополнительные страницы если нужно)
 │
 └── README.md
 ```

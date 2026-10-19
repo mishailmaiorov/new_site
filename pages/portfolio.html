@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио — Алексей Иванов</title>
+<link rel="icon" href="../img/favicon.ico">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="navbar">
+    <a href="../index.html" class="logo-link"><img src="../img/logo.png" alt="Логотип" class="logo-img"></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Главная</a></li>
+      <li><a href="../about.html">Обо мне</a></li>
+      <li><a href="../pages/portfolio.html" class="active">Портфолио</a></li>
+      <li><a href="../blog.html">Блог</a></li>
+      <li><a href="../contact.html">Контакты</a></li>
+    </ul>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Портфолио</h1>
+      <p class="reveal">Избранные проекты последних лет</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="portfolio-filters reveal">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="web">Веб</button>
+        <button class="filter-btn" data-filter="design">Дизайн</button>
+        <button class="filter-btn" data-filter="app">Приложения</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item reveal" data-category="web">
+          <img src="../img/screenshots/proj1.jpg" alt="E-commerce платформа" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>E-commerce платформа</h3>
+            <p>Next.js · Stripe · PostgreSQL</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+        <div class="portfolio-item reveal" data-category="design">
+          <img src="../img/screenshots/proj2.jpg" alt="Дизайн-система" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>Дизайн-система</h3>
+            <p>Figma · Storybook · Tokens</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+        <div class="portfolio-item reveal" data-category="app">
+          <img src="../img/screenshots/proj3.jpg" alt="Мобильное приложение" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>Мобильное приложение</h3>
+            <p>React Native · Firebase</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+        <div class="portfolio-item reveal" data-category="web">
+          <img src="../img/screenshots/proj4.jpg" alt="SaaS Dashboard" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>SaaS Dashboard</h3>
+            <p>Vue 3 · D3.js · Tailwind</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+        <div class="portfolio-item reveal" data-category="design">
+          <img src="../img/screenshots/proj5.jpg" alt="Лендинг стартапа" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>Лендинг стартапа</h3>
+            <p>GSAP · Three.js · WebGL</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+        <div class="portfolio-item reveal" data-category="app">
+          <img src="../img/screenshots/proj6.jpg" alt="Фитнес-трекер" loading="lazy">
+          <div class="portfolio-overlay">
+            <h3>Фитнес-трекер</h3>
+            <p>Flutter · Node.js · MongoDB</p>
+            <button class="view-btn">Подробнее →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>© 2026 Алексей Иванов. Сделано с ❤️ и чистым кодом.</p></div>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
