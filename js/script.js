@@ -1,136 +1,137 @@
-// === Частицы на фоне hero ===
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let particles = [];
+// ===== Роутинг между страницами =====
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('.nav-links a');
 
-function resizeCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-class Particle {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-    this.r = Math.random() * 2 + 0.5;
+function showPage(id) {
+  pages.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    // Перезапуск анимации появления
+    target.style.animation = 'none';
+    target.offsetHeight; // reflow
+    target.style.animation = '';
   }
-  update() {
-    this.x += this.vx; this.y += this.vy;
-    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(124, 92, 255, 0.6)';
-    ctx.fill();
-  }
+  // Подсветка активной ссылки
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Переинициализируем наблюдатели для новой страницы
+  initReveal();
+  initSkillBars();
 }
 
-for (let i = 0; i < 60; i++) particles.push(new Particle());
-
-function connectParticles() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 120) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - d / 120)})`;
-        ctx.lineWidth = 0.5;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
+// Обработка кликов по навигации
+document.addEventListener('click', e => {
+  const link = e.target.closest('[data-page]');
+  if (link) {
+    e.preventDefault();
+    const page = link.dataset.page;
+    history.pushState(null, '', '#' + page);
+    showPage(page);
   }
-}
+});
 
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => { p.update(); p.draw(); });
-  connectParticles();
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
+// Обработка hash при загрузке и навигации браузера
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#', '') || 'home';
+  showPage(hash);
+});
+window.addEventListener('popstate', () => {
+  const hash = location.hash.replace('#', '') || 'home';
+  showPage(hash);
+});
 
-// === Typing effect ===
-const phrases = ['дизайнер', 'фрилансер', 'энтузиаст кода', 'решатель задач'];
-const typedEl = document.getElementById('typed');
-let pIdx = 0, cIdx = 0, deleting = false;
+// ===== Бургер-меню =====
+const burger = document.querySelector('.burger');
+const navList = document.querySelector('.nav-links');
+burger.addEventListener('click', () => navList.classList.toggle('open'));
+
+// ===== Эффект печатной машинки =====
+const typedEl = document.querySelector('.typed');
+const phrases = ['Алексей Петров', 'Веб-дизайнер', 'Frontend-разработчик', 'Творец идей'];
+let phraseIdx = 0, charIdx = 0, isDeleting = false;
 
 function type() {
-  const current = phrases[pIdx];
-  if (!deleting) {
-    typedEl.textContent = current.slice(0, ++cIdx);
-    if (cIdx === current.length) { deleting = true; setTimeout(type, 1800); return; }
+  const current = phrases[phraseIdx];
+  if (isDeleting) {
+    typedEl.textContent = current.substring(0, charIdx--);
+    if (charIdx < 0) {
+      isDeleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+      setTimeout(type, 400);
+      return;
+    }
+    setTimeout(type, 50);
   } else {
-    typedEl.textContent = current.slice(0, --cIdx);
-    if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+    typedEl.textContent = current.substring(0, charIdx++);
+    if (charIdx > current.length) {
+      isDeleting = true;
+      setTimeout(type, 1800);
+      return;
+    }
+    setTimeout(type, 110);
   }
-  setTimeout(type, deleting ? 50 : 100);
 }
 type();
 
-// === Навигация ===
-const navbar = document.querySelector('.navbar');
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.nav-links a');
+// ===== Reveal-анимация при появлении =====
+let revealObserver;
+function initReveal() {
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
 
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  document.querySelectorAll('.page.active .reveal').forEach(el => {
+    revealObserver.observe(el);
   });
-  navLinks.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+}
+
+// ===== Анимация полос навыков =====
+let skillObserver;
+function initSkillBars() {
+  if (skillObserver) skillObserver.disconnect();
+  skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const w = entry.target.dataset.width;
+        entry.target.style.width = w + '%';
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.page.active .bar-fill').forEach(el => {
+    el.style.width = '0';
+    skillObserver.observe(el);
   });
-});
+}
 
-// Бургер-меню
-const burger = document.querySelector('.burger');
-const navLinksEl = document.querySelector('.nav-links');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  navLinksEl.classList.toggle('open');
-});
-navLinks.forEach(a => a.addEventListener('click', () => {
-  burger.classList.remove('open');
-  navLinksEl.classList.remove('open');
-}));
-
-// === Reveal при скролле ===
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      // Анимация навыков
-      e.target.querySelectorAll('.fill').forEach(f => {
-        f.style.width = f.dataset.value + '%';
-      });
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// === Форма ===
-document.getElementById('contactForm').addEventListener('submit', e => {
+// ===== Форма контактов =====
+const form = document.getElementById('contactForm');
+const status = document.getElementById('formStatus');
+form.addEventListener('submit', e => {
   e.preventDefault();
-  const btn = e.target.querySelector('button');
-  const original = btn.textContent;
-  btn.textContent = '✓ Отправлено!';
-  btn.style.background = 'linear-gradient(135deg, #00c853, #00d4ff)';
-  e.target.reset();
+  status.textContent = 'Отправляю...';
   setTimeout(() => {
-    btn.textContent = original;
-    btn.style.background = '';
-  }, 2500);
+    status.textContent = '✓ Спасибо! Я свяжусь с вами в ближайшее время.';
+    form.reset();
+    setTimeout(() => status.textContent = '', 5000);
+  }, 1200);
+});
+
+// ===== Параллакс для hero-блоба =====
+document.addEventListener('mousemove', e => {
+  const blob = document.querySelector('#home .blob');
+  if (!blob) return;
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+  blob.style.transform = `translate(${x}px, ${y}px)`;
 });
