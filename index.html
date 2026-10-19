@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алексей Иванов — Веб-разработчик</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar">
+  <div class="logo">AI<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Главная</a></li>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#portfolio">Портфолио</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+  <button class="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- 1. Главная -->
+<section id="home" class="section hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-content">
+    <p class="greeting">Привет, я 👋</p>
+    <h1 class="name">Алексей Иванов</h1>
+    <p class="role">Веб-разработчик &amp; <span id="typed" class="typed"></span></p>
+    <div class="hero-buttons">
+      <a href="#portfolio" class="btn btn-primary">Мои работы</a>
+      <a href="#contact" class="btn btn-ghost">Связаться</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Скролл</span>
+    <div class="mouse"></div>
+  </div>
+</section>
+
+<!-- 2. Обо мне -->
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Обо мне</h2>
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="https://picsum.photos/seed/dev/500/600" alt="Алексей">
+        <div class="photo-frame"></div>
+      </div>
+      <div class="about-text reveal">
+        <h3>Создаю цифровые продукты уже 7 лет</h3>
+        <p>Я full-stack разработчик с любовью к чистому коду и продуманному UX. Специализируюсь на современных веб-приложениях, анимациях и интерфейсах, которые радуют пользователей.</p>
+        <p>Работал с проектами от стартапов до enterprise-решений. Верю, что хороший код — это поэзия, а хороший дизайн — это забота.</p>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill-head"><span>HTML / CSS</span><span>95%</span></div>
+            <div class="bar"><div class="fill" data-value="95"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><span>JavaScript</span><span>90%</span></div>
+            <div class="bar"><div class="fill" data-value="90"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><span>React / Vue</span><span>85%</span></div>
+            <div class="bar"><div class="fill" data-value="85"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><span>Node.js</span><span>80%</span></div>
+            <div class="bar"><div class="fill" data-value="80"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Услуги -->
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Услуги</h2>
+    <p class="section-sub reveal">Что я могу сделать для вашего проекта</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+          </svg>
+        </div>
+        <h3>Веб-разработка</h3>
+        <p>Современные сайты и SPA на React, Vue, Next.js с адаптивной вёрсткой и высокой производительностью.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>UI/UX Дизайн</h3>
+        <p>Проектирование интерфейсов в Figma: от прототипа до готового дизайна-системы с анимациями.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <h3>Мобильные приложения</h3>
+        <p>Кроссплатформенные приложения на React Native и Flutter с нативным пользовательским опытом.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>Backend & API</h3>
+        <p>Разработка серверной части на Node.js, Python, PostgreSQL. REST и GraphQL API.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/>
+          </svg>
+        </div>
+        <h3>SEO & Оптимизация</h3>
+        <p>Техническая оптимизация, ускорение загрузки, Core Web Vitals и продвижение в поиске.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3>Поддержка</h3>
+        <p>Техническая поддержка, обновления, мониторинг и развитие существующих проектов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Портфолио -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Портфолио</h2>
+    <p class="section-sub reveal">Избранные проекты последних лет</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item reveal" data-category="web">
+        <img src="https://picsum.photos/seed/proj1/800/600" alt="Проект 1">
+        <div class="portfolio-overlay">
+          <h3>E-commerce платформа</h3>
+          <p>Next.js · Stripe · PostgreSQL</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" data-category="design">
+        <img src="https://picsum.photos/seed/proj2/800/600" alt="Проект 2">
+        <div class="portfolio-overlay">
+          <h3>Дизайн-система</h3>
+          <p>Figma · Storybook · Tokens</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" data-category="app">
+        <img src="https://picsum.photos/seed/proj3/800/600" alt="Проект 3">
+        <div class="portfolio-overlay">
+          <h3>Мобильное приложение</h3>
+          <p>React Native · Firebase</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" data-category="web">
+        <img src="https://picsum.photos/seed/proj4/800/600" alt="Проект 4">
+        <div class="portfolio-overlay">
+          <h3>SaaS Dashboard</h3>
+          <p>Vue 3 · D3.js · Tailwind</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" data-category="design">
+        <img src="https://picsum.photos/seed/proj5/800/600" alt="Проект 5">
+        <div class="portfolio-overlay">
+          <h3>Лендинг стартапа</h3>
+          <p>GSAP · Three.js · WebGL</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" data-category="app">
+        <img src="https://picsum.photos/seed/proj6/800/600" alt="Проект 6">
+        <div class="portfolio-overlay">
+          <h3>Фитнес-трекер</h3>
+          <p>Flutter · Node.js · MongoDB</p>
+          <button class="view-btn">Открыть →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Контакты -->
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Связаться со мной</h2>
+    <p class="section-sub reveal">Готов обсудить ваш проект</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:hello@example.com">hello@example.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <h4>Телефон</h4>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Локация</h4>
+            <p>Москва, Россия · Удалённо по миру</p>
+          </div>
+        </div>
+        <div class="socials">
+          <a href="#" class="social" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.2.08 1.84 1.24 1.84 1.24 1.08 1.84 2.82 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.46-1.34-5.46-5.94 0-1.3.46-2.38 1.22-3.22-.12-.3-.52-1.52.12-3.16 0 0 1-.32 3.3 1.22a11.5 11.5 0 016 0c2.3-1.54 3.3-1.22 3.3-1.22.64 1.64.24 2.86.12 3.16.76.84 1.22 1.92 1.22 3.22 0 4.62-2.8 5.64-5.48 5.94.44.38.82 1.12.82 2.26v3.34c0 .32.22.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.16l-1.84 8.68c-.14.62-.5.77-1.02.48l-2.82-2.08-1.36 1.3c-.15.15-.28.28-.57.28l.2-2.9 5.28-4.77c.23-.2-.05-.32-.35-.12l-6.52 4.1-2.81-.88c-.61-.19-.62-.61.13-.9l10.97-4.23c.5-.19.95.12.79.94z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Dribbble">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm7.93 5.52a10 10 0 012.26 6.24c-.33-.07-3.64-.74-6.98-.32-.07-.17-.14-.35-.22-.53-.2-.48-.43-.97-.67-1.44 3.7-1.5 5.38-3.68 5.61-3.95zM12 1.82c2.63 0 5.04 1 6.87 2.65-.2.28-1.7 2.33-5.27 3.67A47.3 47.3 0 009.9 2.2 10.2 10.2 0 0112 1.82zM8 2.7a48.7 48.7 0 013.68 5.87c-4.64 1.24-8.74 1.21-9.18 1.2A10.23 10.23 0 018 2.7zM1.8 12v-.3c.43.01 5.26.07 10.22-1.42.28.56.55 1.12.79 1.68l-.36.1c-5.12 1.65-7.84 6.17-8.08 6.56A10.17 10.17 0 011.8 12zm3.9 8.08c.16-.27 2.15-4.27 7.78-6.23l.06-.02c1.4 3.63 1.97 6.69 2.12 7.55a10.18 10.18 0 01-9.96-1.3zm11.7.3c-.1-.6-.63-3.53-1.94-7.1 3.14-.5 5.9.32 6.25.43a10.2 10.2 0 01-4.3 6.67z"/></svg>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="contactForm">
+        <div class="form-group">
+          <input type="text" id="name" required placeholder=" ">
+          <label for="name">Ваше имя</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" required placeholder=" ">
+          <label for="email">Email</label>
+        </div>
+        <div class="form-group">
+          <textarea id="message" rows="5" required placeholder=" "></textarea>
+          <label for="message">Сообщение</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Алексей Иванов. Сделано с ❤️ и чистым кодом.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
