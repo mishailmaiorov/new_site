@@ -518,3 +518,16 @@ h2 {
   .nav-links.open { right: 0; }
   .burger { display: flex; }
 }
+
+
+
+%% Стилизация
+    classDef main fill:#2563eb,stroke:#1e40af,stroke-width:2px,color:#fff,font-weight:bold;
+    classDef section fill:#f8fafc,stroke:#cbd5e1,stroke-width:2px,color:#0f172a;
+    classDef cta fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff;
+    classDef contact fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    
+    class Home main;
+    class About,Services,Portfolio,Contacts section;
+    class PortfolioCTA,ContactsCTA cta;
+    class Email,Phone,Social contact;
